@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,7 +27,12 @@ class UserController extends Controller
             'password' => ['required', 'confirmed'],
         ]);
 
-        User::create($attributes);
+        User::create([
+            'name' => $attributes['name'],
+            'email' => $attributes['email'],
+            'role' => $attributes['role'],
+            'password' => Hash::make($attributes['password'])
+        ]);
 
         return redirect()->route('users')->banner('User Added Successfully');
     }
