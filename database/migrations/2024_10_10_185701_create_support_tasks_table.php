@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('account_name');
             $table->string('account_credentials');
-            $table->text('verification_links')->default('[]');
+            $table->string('verification_links')->default('[]');
             $table->string('status')->default('On Hold');
             $table->boolean('is_sent')->default(false);
             $table->unsignedBigInteger('user_id')->nullable();
